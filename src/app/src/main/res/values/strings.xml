@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">ZebraButtonPress</string>
+
+    <string name="error_no_network">Make sure you\'re connected and try again.</string>
+    <string name="dialog_title_error">Sorry</string>
+    <string name="dialog_title_no_network">No internet connection.</string>
+    <string name="error_generic_message">We have encountered an error. \nPlease try again</string>
+    <string name="error_location_permisison_title">Allow \"Reach\" to use your location?</string>
+    <string name="error_location_permisison_message">This allows us to run certain features and services. You can enable location services in settings.</string>
+
+    <!--  Buttons -->
+    <string name="btn_retry">Retry</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_general">General notifications</string>
+    <string name="notification_channel_status">Device status notifications</string>
+    <string name="notification_channel_service">Service</string>
+
+    <string name="notification_foreground_service_title">Fall Service Active</string>
+    <string name="notification_foreground_service_message">Keeping you safe</string>
+
+    <string name="notification_fall_detected_title">A fall has been detected</string>
+    <string name="notification_fall_detected_message">If this was a mistake you can cancel below.</string>
 </resources>
