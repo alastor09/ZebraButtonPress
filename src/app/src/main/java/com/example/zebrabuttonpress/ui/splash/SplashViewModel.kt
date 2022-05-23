@@ -1,7 +1,6 @@
 package com.example.zebrabuttonpress.ui.splash
 
-import androidx.lifecycle.ViewModel
+import com.example.zebrabuttonpress.ui.BaseViewModel
+import javax.inject.Inject
 
-class SplashViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
-}
+class SplashViewModel @Inject constructor() : BaseViewModel()

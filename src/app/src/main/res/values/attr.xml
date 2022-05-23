@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="colorScreenBg" format="reference" />
+    <attr name="textBranded" format="reference" />
 </resources>

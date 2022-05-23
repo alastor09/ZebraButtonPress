@@ -3,6 +3,7 @@ package com.example.zebrabuttonpress
 import android.app.Application
 import androidx.databinding.library.BuildConfig
 import com.example.zebrabuttonpress.injection.ApplicationComponent
+import com.example.zebrabuttonpress.injection.DaggerApplicationComponent
 import timber.log.Timber
 
 class ZebraApplication : Application() {
