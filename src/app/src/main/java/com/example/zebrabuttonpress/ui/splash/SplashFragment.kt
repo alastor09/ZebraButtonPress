@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResult
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.example.zebrabuttonpress.databinding.SplashFragmentBinding
@@ -14,8 +15,9 @@ import com.example.zebrabuttonpress.ui.MainForegroundService
 import com.example.zebrabuttonpress.ui.MainServiceViewModel
 import com.example.zebrabuttonpress.ui.helper.extension.app
 import com.example.zebrabuttonpress.ui.helper.extension.navigateTo
+import com.example.zebrabuttonpress.util.ActivityResultManager
+import com.example.zebrabuttonpress.util.ReachPermissionManager
 import timber.log.Timber
-import com.example.zebrabuttonpress.R
 import javax.inject.Inject
 
 class SplashFragment : BaseFragment() {
@@ -31,6 +33,29 @@ class SplashFragment : BaseFragment() {
     private val binding: SplashFragmentBinding
         get() = _binding!!
 
+    private val reachPermissionManager: ReachPermissionManager by lazy {
+        ReachPermissionManager(
+            handlingFragment = this,
+            activityLauncher = activityLauncher,
+            permissionsLauncher = permissionsLauncher,
+            onAllPermissionsGranted = ::onAllPermissionsGranted
+        )
+    }
+
+    public val activityLauncher: ActivityResultManager<Intent, ActivityResult> =
+        ActivityResultManager.registerActivityForResult(this)
+
+    public val permissionsLauncher: ActivityResultManager<Array<out String>, Map<String, Boolean>> =
+        ActivityResultManager.registerActivityForMultiplePermissions(this)
+
+    private fun onAllPermissionsGranted() {
+
+        val fallIntent = Intent(this.requireContext(), MainForegroundService::class.java)
+        ContextCompat.startForegroundService(this.requireContext(), fallIntent)
+
+        navigateTo(SplashFragmentDirections.actionToHome())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,10 +69,7 @@ class SplashFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("Splash Fragment OnCreate")
 
-        val fallIntent = Intent(this.requireContext(), MainForegroundService::class.java)
-        ContextCompat.startForegroundService(this.requireContext(), fallIntent)
-
-        navigateTo(SplashFragmentDirections.actionToHome())
+        reachPermissionManager.requestPermissions()
     }
 
     override fun inject() {

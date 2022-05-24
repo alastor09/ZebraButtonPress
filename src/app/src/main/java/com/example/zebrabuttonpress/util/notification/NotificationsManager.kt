@@ -29,7 +29,7 @@ class NotificationsManager(
     companion object {
         // notifications can be managed by channels at the Android level
         enum class Channel {
-            CHANNEL_GENERAL,
+            CHANNEL_ZEBRA,
         }
 
         // used to group notification in the tray
@@ -38,10 +38,20 @@ class NotificationsManager(
         }
     }
 
+    init {
+        val channelGeneral = NotificationChannel(
+            Channel.CHANNEL_ZEBRA.name,
+            context.getString(R.string.notification_channel_general),
+            NotificationManager.IMPORTANCE_HIGH
+        )
+
+        notificationManager.createNotificationChannel(channelGeneral)
+
+    }
     /**
      * Special method to get thenotification for the foregroundservice
      */
-    fun getMainServiceNotification(): Notification = NotificationCompat.Builder(context, Channel.CHANNEL_GENERAL.name)
+    fun getMainServiceNotification(): Notification = NotificationCompat.Builder(context, Channel.CHANNEL_ZEBRA.name)
         .setContentTitle(context.getString(R.string.notification_foreground_service_title))
         .setContentText(context.getString(R.string.notification_foreground_service_message))
         .setSmallIcon(R.drawable.ic_notification)

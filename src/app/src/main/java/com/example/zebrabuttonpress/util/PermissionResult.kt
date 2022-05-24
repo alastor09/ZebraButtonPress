@@ -21,4 +21,3 @@ sealed class PermissionResult(val requestCode: Int) {
                                       val permanentlyDeniedPermissions: List<String>)
         : PermissionResult(requestCode)
 }
-

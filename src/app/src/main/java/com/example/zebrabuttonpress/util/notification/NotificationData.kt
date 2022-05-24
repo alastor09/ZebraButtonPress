@@ -7,7 +7,7 @@ import android.os.Bundle
  */
 data class NotificationData(
     val title: String, // notification title
-    val channel: NotificationsManager.Companion.Channel = NotificationsManager.Companion.Channel.CHANNEL_GENERAL, // notification channel
+    val channel: NotificationsManager.Companion.Channel = NotificationsManager.Companion.Channel.CHANNEL_ZEBRA, // notification channel
     val group: NotificationsManager.Companion.Group = NotificationsManager.Companion.Group.GROUP_DEFAULT, // code to group notifications
     val silent: Boolean = false, // silent or displayed notification?
     val message: String? = null, // notification message

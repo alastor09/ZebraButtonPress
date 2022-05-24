@@ -28,7 +28,7 @@ class DeviceButtonManager(
         listOf(DoubleButtonSettings(3000, "com.symbol.button.L1", "com.symbol.button.L2"))
 
     private val singlePressButtons: List<SingleButtonSettings> =
-        listOf(SingleButtonSettings(1000, listOf("com.symbol.button.L1")))
+        listOf(SingleButtonSettings(1000, listOf("com.symbol.button.R2")))
 
     private val coroutineJob = SupervisorJob()
     override val coroutineContext: CoroutineContext
@@ -42,6 +42,10 @@ class DeviceButtonManager(
         private val triggerButtonPressDuration: Long
     ) : ButtonPressBroadcastReceivers() {
 
+        init {
+            Timber.d("Observing Single Keys with intent filter $interestedKey")
+
+        }
         private var singleKeyTimer: Timer? = null
 
         override fun onReceive(context: Context?, intent: Intent) {
@@ -109,6 +113,10 @@ class DeviceButtonManager(
 
         private var doubleKeyTimer: Timer? = null
 
+        init {
+            Timber.d("Observing Double Keys with intent filter $keyOne $keyTwo")
+        }
+
         @Synchronized
         override fun onReceive(context: Context?, intent: Intent) {
             if (intent.action == null) return
@@ -169,7 +177,7 @@ class DeviceButtonManager(
 
     init {
         launch {
-            Timber.d("Observing configDownloadState")
+            Timber.d("Observing Button States")
             configUpdated()
         }
     }

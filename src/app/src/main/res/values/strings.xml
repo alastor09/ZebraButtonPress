@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">ZebraButtonPress</string>
 
+    <string name="background_location_title">Allow \"Reach\" to use your location all times?</string>
+    <string name="background_location_message">This allows \"Reach\" to run location based features and services. Please select \"Allow all the time\".</string>
+
+    <string name="error_storage_permission_title">Allow \"Reach\" to access storage?</string>
+    <string name="error_storage_permission_message">This allows \"Reach\" to run logging based features and services.</string>
+
+    <string name="error_location_permission_title">Allow \"Reach\" to use your location all times?</string>
+    <string name="error_location_permission_message">This allows \"Reach\" to run location based features and services. You can enable location services in Settings.</string>
+
+    <string name="dismiss">Dismiss</string>
+    <string name="ok">OK</string>
+
+    <string name="go_to_settings">Go to Settings</string>
+
     <!--  Buttons -->
     <string name="btn_retry">Retry</string>
     <string name="btn_cancel">Cancel</string>
@@ -9,5 +23,6 @@
 
     <string name="notification_foreground_service_title">Zebra Button Service Active</string>
     <string name="notification_foreground_service_message">Monitoring Button Presses</string>
+    <string name="notification_channel_general">Zebra Notification</string>
 
 </resources>
