@@ -2,14 +2,10 @@ package com.example.zebrabuttonpress.ui
 
 import android.content.Context
 import android.content.DialogInterface
-import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.zebrabuttonpress.R
-import com.example.zebrabuttonpress.ui.helper.RaulandError
 import com.example.zebrabuttonpress.ui.helper.createDialog
-import com.example.zebrabuttonpress.ui.helper.extension.navigateTo
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -25,29 +21,10 @@ abstract class BaseFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     /**
      * Derived classes should inject their dependencies
      */
     abstract fun inject()
-
-    /**
-     * Handle common errors
-     */
-    open fun handleBaseError(error: RaulandError) {
-        dialogBasic?.dismiss()
-        when (error) {
-            is RaulandError.NetworkConnection -> {
-                showNoNetworkError()
-            }
-            else -> {
-                showGenericError()
-            }
-        }
-    }
 
     /***************************************************
      * Dialog management
@@ -169,35 +146,6 @@ abstract class BaseFragment : Fragment() {
             cancelable,
             positiveText,
             negativeText
-        )
-    }
-
-    fun showGenericError() {
-        showBasicDialog(R.string.dialog_title_error, R.string.error_generic_message)
-    }
-
-    fun showNoNetworkError() {
-        showBasicDialog(R.string.dialog_title_no_network, R.string.error_no_network)
-    }
-
-    fun showRetryError(retryBlock: () -> Unit) {
-        showDialogWithAction(
-            title = R.string.dialog_title_error,
-            message = R.string.error_generic_message,
-            positiveText = R.string.btn_retry,
-            positiveAction = { retryBlock() },
-            cancelable = false
-        )
-    }
-
-    fun showRetryCancelError(retryBlock: () -> Unit, cancelBlock: () -> Unit) {
-        showDialogWithActions(
-            title = R.string.dialog_title_error,
-            message = R.string.error_generic_message,
-            positiveText = R.string.btn_retry,
-            positiveAction = { retryBlock() },
-            negativeAction = { cancelBlock() },
-            cancelable = false
         )
     }
 }

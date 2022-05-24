@@ -2,10 +2,7 @@ package com.example.zebrabuttonpress.injection
 
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat
-import com.example.zebrabuttonpress.util.DefaultDispatcherProvider
-import com.example.zebrabuttonpress.util.DispatcherProvider
-import com.example.zebrabuttonpress.util.ResourcesProvider
-import com.example.zebrabuttonpress.util.ResourcesProviderImpl
+import com.example.zebrabuttonpress.util.*
 import com.example.zebrabuttonpress.util.notification.NotificationsManager
 import dagger.Module
 import dagger.Provides
@@ -35,6 +32,17 @@ class ApplicationModule {
         NotificationManagerCompat
     ): NotificationsManager =
         NotificationsManager(context, notificationManagerCompat)
+
+    @Provides
+    @Singleton
+    fun provideDeviceKeyManager(
+        context: Context,
+        dispatchers: DispatcherProvider
+    ): DeviceButtonManager =
+        DeviceButtonManager(
+            context = context,
+            dispatchers = dispatchers
+        )
 
     //region Services
     //endregion

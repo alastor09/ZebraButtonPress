@@ -1,5 +1,6 @@
 package com.example.zebrabuttonpress.ui
 
+import com.example.zebrabuttonpress.util.DeviceButtonManager
 import com.example.zebrabuttonpress.util.DispatcherProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -10,7 +11,8 @@ import kotlin.coroutines.CoroutineContext
 @Singleton
 class MainServiceViewModel @Inject constructor(
     private val dispatchers: DispatcherProvider,
-) : CoroutineScope {
+    private val deviceButtonManager: DeviceButtonManager,
+    ) : CoroutineScope {
 
     // create a coroutine context scoped to this view model's lifecycle
     private var coroutineJob = SupervisorJob()
@@ -23,6 +25,7 @@ class MainServiceViewModel @Inject constructor(
 
 
     fun onDestroy() {
+        deviceButtonManager.onDestroy()
         coroutineJob.cancel()
     }
 }
